@@ -7,10 +7,9 @@ const chatRouter = require("./routers/chatRouter")
 const app = express();
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
-app.use('/static',express.static("node_modules"));
 app.use('/',chatRouter);
 
-const server = app.listen(process.env.PORT,()=>{
+const server = app.listen(process.env.PORT || 3000,()=>{
     console.log("server is running");
 })
 
