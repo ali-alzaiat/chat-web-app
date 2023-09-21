@@ -4,6 +4,7 @@
   "description": "Chat room with Node.js and Socket.IO.",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ali",
@@ -13,5 +14,8 @@
     "dotnet": "^1.1.4",
     "express": "^4.18.2",
     "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
