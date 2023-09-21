@@ -6,7 +6,10 @@ const messageContainer = document.getElementById('message-container');
 
 socket.emit("user-connected",userName);
 socket.on("user-connected",(name)=>{
-    console.log(name+" joined");
+    let div = document.createElement('div');
+    div.classList.add('join');
+    div.innerText = `${name} joined`;
+    messageContainer.append(div);
 })
 console.log(userName);
 
@@ -14,11 +17,21 @@ form.addEventListener("submit",(e)=>{
     e.preventDefault();
     let text = messageText.value;
     socket.emit("message",text);
+    appendMessage('my-message',messageText.value);
     messageText.value = '';
+    window.scrollTo(0, document.body.scrollHeight);
 })
 
 socket.on('message',(message)=>{
-    let div = document.createElement('div')
-    div.innerText = message;
-    messageContainer.append(div);
+    appendMessage('other-message',message);
 })
+
+function appendMessage(className,message){
+    let div = document.createElement('div');
+    div.classList.add('message');
+    let messageDiv = document.createElement('div');
+    messageDiv.classList.add(className);
+    messageDiv.innerText = message;
+    div.append(messageDiv);
+    messageContainer.append(div);
+}
