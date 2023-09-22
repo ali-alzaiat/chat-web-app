@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="chatrooms.css">
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="script.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="add-container">
-            <form action="/room" method="post">
-                <input type="text" name="room-name" class="room-name" id="room-name"  autocomplete="off" placeholder="Enter the room name">
-                <button id="add" class="add">add</button>
+    <div class="room-container" id="room-container">
+        <div class="add-container" id="add-container">
+            <form action="/room" method="post" class="add-form" id="add-form">
+                <input type="text" name="room" class="room-name" id="room-name"  autocomplete="off" placeholder="Enter the room name">
+                <button id="add" class="add" type="submit">add</button>
             </form>
         </div>
+        <% Object.keys(rooms).forEach((room)=>{%>
+            <div class="card">
+                <%= room %></br>
+                <a href="/<%= room %>">Join</a>
+            </div>
+        <%});%>
     </div>
 </body>
 </html>
