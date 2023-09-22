@@ -1,4 +1,4 @@
-const socket = io("http://localhost:3000");
+const socket = io('https://chat-5ghn.onrender.com');
 const form = document.getElementById('message-form');
 const addForm = document.getElementById('add-form');
 const messageText = document.getElementById('message-text')
