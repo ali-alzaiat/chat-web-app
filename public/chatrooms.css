@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.room-name {
+    flex:1;
+    padding: 5px;
+}
+
+.add {
+    background-color: blue;
+    padding: 5px 10px;
+}
+
+.card {
+    text-align: center;
+    align-items: center;
+    border: black;
+    border-width: medium;
+}

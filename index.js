@@ -35,5 +35,5 @@ io.on('connection',(socket)=>{
 });
 
 server.on("error", (error) => {
-    console.error("Server error:", error);
+    console.error("Server error: ", error);
   });
