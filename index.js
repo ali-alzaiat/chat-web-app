@@ -51,7 +51,7 @@ io.on('connection',(socket)=>{
     })
 
     socket.on("message",(room,message)=>{
-        socket.to(room).emit("message",message);
+        socket.to(room).emit("message",message,rooms[room].users[socket.id]);
     })
 
     socket.on("room-added",(room)=>{

@@ -46,8 +46,8 @@ socket.on("user-connected",(name)=>{
     messageContainer.append(div);
 })
 
-socket.on('message',(message)=>{
-    appendMessage('other-message',message);
+socket.on('message',(message,name)=>{
+    appendMessage('other-message',name+": "+message);
 })
 
 function appendMessage(className,message){
