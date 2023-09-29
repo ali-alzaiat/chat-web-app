@@ -20,7 +20,7 @@ if(messageContainer != null){
         window.scrollTo(0, document.body.scrollHeight);
     })
     
-    messageText.addEventListener('keypress',()=>{
+    messageText.addEventListener('input',()=>{
         socket.emit("typing",userName,room)
     })
 }
@@ -34,11 +34,14 @@ if(roomContainer != null){
 
 socket.on('room-added',(room)=>{
     let div = document.createElement('div');
-    div.classList.add('card');
+    div.classList.add('card','room-card','mb-2');
     div.innerHTML = room+"</br>";
     let a = document.createElement('a');
+    let span = document.createElement('span');
+    span.classList.add('badge', 'text-bg-primary');
+    span.innerText = 'Join'
     a.href = `/${room}`
-    a.innerText = 'Join'
+    a.append(span);
     div.append(a);
     roomContainer.append(div);
 })
