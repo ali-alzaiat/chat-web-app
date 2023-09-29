@@ -1,4 +1,5 @@
-const socket = io('https://chat-5ghn.onrender.com');
+// const socket = io('https://chat-5ghn.onrender.com');
+const socket = io('http://localhost:3000/');
 const form = document.getElementById('message-form');
 const addForm = document.getElementById('add-form');
 const messageText = document.getElementById('message-text')
@@ -18,6 +19,7 @@ if(messageContainer != null){
         messageText.value = '';
         window.scrollTo(0, document.body.scrollHeight);
     })
+    
     
 }
 

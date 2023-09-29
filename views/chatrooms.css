@@ -20,12 +20,15 @@
     padding: 5px 10px;
 }
 
-.card {
+/* .card {
     text-align: center;
     align-items: center;
     border:3px solid black;
     margin-top: 5px;
     margin-bottom: 5px;
+} */
+.room-card {
+    text-align: center;
 }
 
 .add-form{
