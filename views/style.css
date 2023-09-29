@@ -1,8 +1,17 @@
-.container {
+.chat-container {
     display: flex;
     height: 100vh;
     box-sizing: border-box;
     justify-content: center;
+}
+
+.top-container {
+    display: block;
+    width: 100%;
+}
+
+.typing {
+    display: none;
 }
 
 .message-text {
@@ -38,7 +47,7 @@
 
 .message-container {
     display: block;
-    height: 100%;
+    overflow: auto;
     width: 100%;
 }
 
