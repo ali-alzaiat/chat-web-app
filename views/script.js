@@ -6,6 +6,7 @@ const messageText = document.getElementById('message-text')
 const roomName = document.getElementById('room-name')
 const messageContainer = document.getElementById('message-container');
 const roomContainer = document.getElementById('room-container');
+const typingblock = document.getElementById('typing');
 
 if(messageContainer != null){
     let userName = prompt("enter your name");
@@ -14,13 +15,15 @@ if(messageContainer != null){
     form.addEventListener("submit",(e)=>{
         e.preventDefault();
         let text = messageText.value;
-        socket.emit("message",room,text);
+        socket.emit("message", room, text);
         appendMessage('my-message',messageText.value);
         messageText.value = '';
         window.scrollTo(0, document.body.scrollHeight);
     })
     
-    
+    messageText.addEventListener('keypress',()=>{
+        socket.emit("typing",userName,room)
+    })
 }
 
 if(roomContainer != null){
@@ -49,7 +52,15 @@ socket.on("user-connected",(name)=>{
 })
 
 socket.on('message',(message,name)=>{
+    typingblock.style.display = "none";
     appendMessage('other-message',name+": "+message);
+})
+
+socket.on("typing",(userName)=>{
+    typingblock.style.display = 'block';
+    setTimeout(()=>{
+        typingblock.style.display = 'none';
+    },5000);
 })
 
 function appendMessage(className,message){

@@ -58,6 +58,9 @@ io.on('connection',(socket)=>{
         socket.broadcast.emit("room-added",room);
     })
     
+    socket.on("typing",(userName,room)=>{
+        socket.to(room).emit("typing",userName);
+    })
 });
 
 server.on("error", (error) => {
