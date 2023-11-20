@@ -1,10 +1,12 @@
-const socket = io('https://chat-5ghn.onrender.com');
+// const socket = io('https://chat-5ghn.onrender.com');
+const socket = io('http://localhost:3000/');
 const form = document.getElementById('message-form');
 const addForm = document.getElementById('add-form');
 const messageText = document.getElementById('message-text')
 const roomName = document.getElementById('room-name')
 const messageContainer = document.getElementById('message-container');
 const roomContainer = document.getElementById('room-container');
+const topContainer = document.getElementById('top-container');
 const typingblock = document.getElementById('typing');
 
 if(messageContainer != null){
@@ -17,7 +19,7 @@ if(messageContainer != null){
         socket.emit("message", room, text);
         appendMessage('my-message',messageText.value);
         messageText.value = '';
-        window.scrollTo(0, document.body.scrollHeight);
+        topContainer.scrollTo(0, document.body.scrollHeight);
     })
     
     messageText.addEventListener('input',()=>{
@@ -51,11 +53,13 @@ socket.on("user-connected",(name)=>{
     div.classList.add('join');
     div.innerText = `${name} joined`;
     messageContainer.append(div);
+    topContainer.scrollTo(0, document.body.scrollHeight);
 })
 
 socket.on('message',(message,name)=>{
     typingblock.style.display = "none";
     appendMessage('other-message',name+": "+message);
+    topContainer.scrollTo(0, document.body.scrollHeight);
 })
 
 socket.on("typing",(userName)=>{
@@ -67,7 +71,7 @@ socket.on("typing",(userName)=>{
 
 function appendMessage(className,message){
     let div = document.createElement('div');
-    div.classList.add('message');
+    div.classList.add((className == "other-message")?"o-message":'message');
     let messageDiv = document.createElement('div');
     messageDiv.classList.add(className);
     messageDiv.innerText = message;
